@@ -83,6 +83,8 @@ class ChromaticSymmetricChainComplex(SageObject):
 
         The algorithm is only implemented in q-degree 0
         """
+        if self._verbose:
+            print("%s: %s: Computing differential (%d, %d)"%(datetime.now(),self._name,i,j))
         if j != 0:
             raise NotImplementedError("At the moment we can only compute in degree 0.")
         if i == 0:
@@ -115,12 +117,7 @@ class ChromaticSymmetricChainComplex(SageObject):
         """
         if j !=0:
             raise NotImplementedError("Only implemented for q-degree 0")
-        degrees = [i, i+1] if i is not None else range(self._G.num_verts())
-        diff = {}
-        for k in degrees:
-            if self._verbose:
-                print("%s: %s: Computing differential (%d, 0)"%(datetime.now(),self._name,k))
-            diff[k] = self.differential(k, 0)
+        diff = { k: self.differential(k, 0) for k in ([i, i+1] if i is not None else range(self._G.num_verts())) }
         if self._verbose:
             print("%s: %s: Reducing differentials using AMT"%(datetime.now(),self._name))
         diff = amt_reduction(diff)
