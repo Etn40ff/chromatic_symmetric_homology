@@ -1,5 +1,4 @@
-This is the `sagemath` code used for computations when preparing
-[arXiv:bla](https://arxiv.org/abs/bla).
+This is the `sagemath` code used for computations when preparing "On the strength of chromatic symmetric homology for graphs".
 
 Here is a sample session:
 
